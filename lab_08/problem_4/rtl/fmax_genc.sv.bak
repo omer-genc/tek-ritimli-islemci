@@ -1,0 +1,21 @@
+/* fmax_genc.sv */
+
+module fmax_genc(
+    input   logic            clk,reset,
+    input   logic   [31:0]   komut, // decode yani lab_07_p3 e bağlanacak
+    output  logic   [31:0]   pc,    //Fetch e bağlanacak yani lab_08_p1
+    output  logic            hata   // Fetch e bağlanacak
+);
+
+
+logic   [31:0]   komut_reg, // decode yani lab_07_p3 e bağlanacak
+logic   [31:0]   pc_reg,    //Fetch e bağlanacak yani lab_08_p1
+
+genc gencfmax(.clk(clk),.reset(reset),.komut(komut_reg),.pc(pc_reg),.hata(hata));
+
+always_ff @(posedge) begin
+komut_reg <= komut;
+pc_reg    <= pc;
+end
+
+endmodule
